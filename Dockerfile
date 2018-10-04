@@ -1,5 +1,4 @@
-
-FROM autocaseimpact / alpine-uwsgi-postgresql:latest
+FROM autocaseimpact/alpine-uwsgi-postgresql:latest
 
 # Install Node.js
 RUN apk --no-cache add nodejs=8.11.4-r0 npm=8.11.4-r0
