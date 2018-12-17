@@ -10,8 +10,9 @@ RUN apk --no-cache add libxslt-dev libxml2-dev
 RUN apk --no-cache add git
 
 # Download and install wkhtmltopdf
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories; apk upgrade --update-cache --available
-RUN apk --no-cache add wkhtmltopdf coreutils xvfb dbus
+RUN echo '@edgecommunity http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
+RUN apk update
+RUN apk --no-cache add wkhtmltopdf@edgecommunity coreutils xvfb dbus
 
 # Install xvfb to use wkhtmltopdf without X server
 ADD ./packages/wkhtmltopdf /usr/local/bin/
