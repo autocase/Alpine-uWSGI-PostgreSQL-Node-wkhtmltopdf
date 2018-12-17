@@ -1,7 +1,7 @@
 FROM autocaseimpact/alpine-uwsgi-postgresql:latest
 
 # Install Node.js
-RUN apk --no-cache add nodejs=8.11.4-r0 npm=8.11.4-r0
+RUN apk --no-cache add nodejs=8.14.1-r0 npm=8.14.1-r0
 
 # Bower needs git installed
 RUN apk --no-cache add git
