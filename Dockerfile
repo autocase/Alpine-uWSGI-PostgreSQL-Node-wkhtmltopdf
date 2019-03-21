@@ -29,6 +29,3 @@ RUN npm install -g npm
 RUN apk --no-cache add chromium
 ENV CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/
-
-# Install Numpy
-RUN pip install --no-cache-dir numpy
