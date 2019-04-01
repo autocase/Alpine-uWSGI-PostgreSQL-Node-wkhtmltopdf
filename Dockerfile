@@ -1,18 +1,14 @@
 FROM autocaseimpact/alpine-uwsgi-postgresql:latest
 
-# Install Node.js
-RUN apk --no-cache add nodejs=8.14.0-r0 npm=8.14.0-r0
-
-# Install dependencies for python-docx
-RUN apk --no-cache add libxslt-dev libxml2-dev
-
-# Bower needs git installed
-RUN apk --no-cache add git
-
-# Download and install wkhtmltopdf
+# Update packages and install node.js, python-docx deps
+# and wkhtmltopdf
 RUN echo '@edgecommunity http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 RUN apk update
-RUN apk --no-cache add wkhtmltopdf@edgecommunity coreutils xvfb dbus
+RUN apk --no-cache add nodejs=8.14.0-r0 npm=8.14.0-r0 \
+		       libxslt-dev libxml2-dev git \
+		       ca-certificates gcc g++ curl openblas-dev \
+		       wkhtmltopdf@edgecommunity coreutils xvfb dbus \
+		       libpng-dev freetype-dev
 
 # Install xvfb to use wkhtmltopdf without X server
 ADD ./packages/wkhtmltopdf /usr/local/bin/
@@ -29,3 +25,6 @@ RUN npm install -g npm
 RUN apk --no-cache add chromium
 ENV CHROME_BIN=/usr/bin/chromium-browser \
     CHROME_PATH=/usr/lib/chromium/
+
+# Install Numpy
+RUN pip install --upgrade --no-cache-dir matplotlib==3.0.*
